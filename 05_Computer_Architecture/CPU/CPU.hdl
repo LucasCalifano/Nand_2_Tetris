@@ -1,0 +1,60 @@
+CHIP CPU {
+
+    IN  inM[16],         // M value input  (M = contents of RAM[A])
+        instruction[16], // Instruction for execution
+        reset;           // Signals whether to re-start the current
+                         // program (reset==1) or continue executing
+                         // the current program (reset==0).
+
+    OUT outM[16],        // M value output
+        writeM,          // Write to M? 
+        addressM[15],    // Address in data memory (of M)
+        pc[15];          // address of next instruction
+
+    PARTS:
+    //Control Logic
+    And(a= instruction[15], b= instruction[12], out= instructionM);
+    Not(in= instruction[15], out = instructionA);
+
+    And(a=instruction[5], b= instruction[15], out= storeA);
+    And(a= instruction[4], b= instruction[15], out = storeD);
+    And(a= instruction[3], b= instruction[15], out= storeM, out = writeM);
+
+    //Jump instructions
+    And(a= instruction[15], b= instruction[0], out= instrGreater);
+    And(a= instruction[15], b= instruction[1], out= instrEqual);
+    And(a= instruction[15], b= instruction[2], out= instrLess);
+
+    And(a= instruction[15], b= zr, out= jmpZr);
+    And(a= instruction[15], b= ng, out= jmpNg);
+    
+    //Instruction Mux16
+    Mux16(a= instruction, b= outALU, sel= storeA, out= out1);
+    //A Register 
+    Or(a= instructionA, b= storeA, out= LoadA);
+    ARegister(in= out1, load= LoadA, out= outA, 
+                  out[0..14]= addressM);
+    //D Register
+    DRegister(in= outALU, load= storeD, out= outD);
+    //inM Mux16
+    Mux16(a= outA, b= inM, sel= instructionM, out= outd);
+
+    ALU(x= outD, y= outd, zx= instruction[11], nx= instruction[10], 
+         zy= instruction[9], ny= instruction[8], f= instruction[7], 
+         no= instruction[6], out= outM, out=outALU, zr= zr, ng= ng);
+
+    //PC Loading Controls
+    Not(in= zr, out= notZr);
+    Not(in= ng, out= notNg);
+    And(a= notZr, b= notNg, out= aluPos);
+    And(a= instrLess, b= ng, out= jmpLess);
+    And(a= instrEqual, b= zr, out= jmpEqual);
+    And(a= instrGreater, b= aluPos, out= jmpGreater);
+    Or(a= jmpLess, b= jmpEqual, out= jmp1);
+    Or(a= jmp1, b= jmpGreater, out= jmp);
+    Not(in= jmp, out=inc );
+
+
+    PC(in= outA, load= jmp, inc= inc, reset= reset, out[0..14]= pc );
+
+}
