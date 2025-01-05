@@ -5,20 +5,20 @@ This repository documents my journey through the **Nand2Tetris** course, where I
 
 
 ## Hardware layer
-Project 1: Boolean Logic
-Project 2: Boolean Arithmetic
-Project 3: Sequential Logic
-Project 4: Machine Language
-Project 5: Computer Architecture
+Project 1: Boolean Logic  
+Project 2: Boolean Arithmetic  
+Project 3: Sequential Logic  
+Project 4: Machine Language  
+Project 5: Computer Architecture  
  
 ## Software layer
- Project 6: Assembler
- Project 7: VM I: Stack Arithmetic
- Project 8: VM II: Program Control
- Project 9: High-Level Language
- Project 10: Compiler I: Syntax Analysis
- Project 11: Compiler II: Code Generation
- Project 12: Operating System
+ Project 6: Assembler  
+ Project 7: VM I: Stack Arithmetic  
+ Project 8: VM II: Program Control  
+ Project 9: High-Level Language  
+ Project 10: Compiler I: Syntax Analysis  
+ Project 11: Compiler II: Code Generation  
+ Project 12: Operating System  
 
 ## Why Nand2Tetris?
 This project wasn't just about building a computer—it's about **understanding** one. I explored digital logic design, low-level programming, and high-level abstraction layers, all while sharpening my problem-solving and engineering skills.
