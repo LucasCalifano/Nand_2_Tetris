@@ -1,7 +1,15 @@
 ## **Nand2Tetris**  
 The aim of this course is to build a general purpose computer (hardware and software) from the ground up, starting with just a simple NAND gate.  
 Following the specifications from the book "The Elements of Computing Systems" by Noam Nisan and Shimon Shocken.  
+
 This repository documents my journey through the **Nand2Tetris** course, where I built a complete computer from the ground up—starting with a single NAND gate and working all the way up to a functional operating system capable of running programs like Tetris. This hands-on experience gave me a deeper understanding of how hardware and software come together to create a working computer.  
+
+## Core Componets
+Hardware Design: Custom logic gates, ALU, CPU, and RAM built from scratch.  
+Assembler: Translated assembly code into machine code.  
+Virtual Machine: Implemented a stack-based VM for higher-level languages.  
+Compiler: Developed a compiler to translate Jack code into VM commands.  
+Operating System: Built essential OS features like memory management and I/O handling.  
 
 
 ## Hardware layer
