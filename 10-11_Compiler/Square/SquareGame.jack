@@ -63,9 +63,14 @@ class SquareGame {
          if (key = 90)  { do square.decSize(); } // z key
          if (key = 88)  { do square.incSize(); } // x key
          if (key = 131) { let direction = 1; }   // up arrow
+         if (key = 119) { let direction = 1; }   // up arrow
          if (key = 133) { let direction = 2; }   // down arrow
+         if (key = 115) { let direction = 2; }   // down arrow
          if (key = 130) { let direction = 3; }   // left arrow
+         if (key = 97) { let direction = 2; }   // down arrow
          if (key = 132) { let direction = 4; }   // right arrow
+         if (key = 100) { let direction = 4; }   // right arrow
+
 
          // waits for the key to be released
          while (~(key = 0)) {
